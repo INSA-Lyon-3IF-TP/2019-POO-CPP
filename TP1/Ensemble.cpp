@@ -151,18 +151,22 @@ unsigned int Ensemble::Ajuster(int delta)
 
 bool Ensemble::Retirer(int element)
 {
+	#ifdef MAP
+		cout << "Appel de Retirer(" << element << ")" << endl;
+	#endif
 	for(unsigned i(0); i < cardAct; ++i) //Parcours de this->elements[]
 	{
 		int current = this->elements[i];
+		//cout << "current = " << current << "element = " << element << endl;
 		if(current == element)
 		{
 			this->elements[i] = this->elements[cardAct-1];
 			--cardAct;
-			this->Ajuster(cardAct-cardMax);
+			this->cardMax = this->cardAct;
 			return true;
 		}
 	}
-	this->Ajuster(cardAct-cardMax);
+	this->cardMax = this->cardAct;
 	return false;	
 	
 }//Ensemble::Retirer()
@@ -203,16 +207,32 @@ Ensemble::Ensemble(int t[], unsigned int nbElements)
  	#ifdef MAP
     		cout << "Appel au constructeur via tableau de <Ensemble>" << endl;
   	#endif
+	/*
+	for(int i(0); i < nbElements; ++i)
+	{
+		cout << t[i] << " -- ";
+	}
+	cout << endl;
+	*/
 	if(cardMax != 0)
 	{
-		elements = new int[cardMax];
+		int tmp[cardMax];
+		/*
+		for(int i(0); i < cardMax; ++i)
+		{
+			cout << tmp[i] << " -- ";
+		}
+		cout << endl;
+		*/
 		int i(0);
 		for(unsigned j(0); j < nbElements; ++j) //Parcours de t[]
 		{
 			bool isPresent = false;
 			for(unsigned k(0); k < j ; ++k) //Parcours de elements[] jusqu'a la position j
 			{
-				if(elements[k] == t[j])
+				//cout << "t[" << j << "] = " << t[j] << endl;
+				//cout << "tmp[" << k << "] = " << tmp[k] << endl;
+				if(tmp[k] == t[j])
 				{
 					isPresent = true;
 					break;
@@ -220,18 +240,25 @@ Ensemble::Ensemble(int t[], unsigned int nbElements)
 			}
 			if(!isPresent)
 			{
-				elements[i] = t[j];
+				//if(i == 3)
+					//cout << "YEHO" << endl;
+				tmp[i] = t[j];
+				//cout << "tmp[" << i << "] = " << tmp[i] << endl;
 				++i;
 			}
 		}
-		cardAct = i;
+		cardAct	= i;
+		elements = new int[cardMax];
+		for(int i(0); i < cardAct; ++i)
+		{
+			elements[i] = tmp[i];
+		}
 	}
 	else
 	{
 		elements = NULL;
 		cardAct = 0;
 	}
-	
 }//----- Fin de Ensemble (constructeur via tableau)
 
 Ensemble::~Ensemble()
