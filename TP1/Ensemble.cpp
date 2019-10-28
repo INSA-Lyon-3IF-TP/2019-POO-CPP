@@ -198,8 +198,36 @@ unsigned int Ensemble::Retirer(const Ensemble & unEnsemble)
 	return cpt;
 }//Ensemble::Retirer()
 
+int Ensemble::Reunir(const Ensemble & unEnsemble)
+{
+	//Ensemble tmp(this);
+	if(unEnsemble.EstInclus(*this) != NON_INCLUSION)
+	{
+		return 0;
+	}
+	unsigned cpt(0);
+	bool reajustement = false;
+	for(unsigned i(0); i < unEnsemble.cardAct; ++i) //Parcours de unEnsemble
+	{
+		crduAjouter result = this->Ajouter(unEnsemble.elements[i]);
+		switch(result)
+		{
+			case DEJA_PRESENT:
+				break;
+			case AJOUTE:
+				++cpt;
+				break;
+			case PLEIN:
+				this->Ajuster(1);
+				reajustement = true;
+				this->Ajouter(unEnsemble.elements[i]);
+				++cpt;
+		}
+	}
+	return reajustement ? -cpt : cpt;
+}//Ensemble::Reunir()
+
 /*
-	int Reunir(const Ensemble & unEnsemble);
 	unsigned int Intersection(const Ensemble & unEnsemble);
 */
 

@@ -61,7 +61,7 @@ public:
 
 //-------------------------------------------- Constructeurs - destructeur
   
-  Ensemble(unsigned int cardMax = CARD_MAX);
+	Ensemble(unsigned int cardMax = CARD_MAX);
 	Ensemble(int t[], unsigned int nbElements);
 	virtual ~Ensemble();
 
