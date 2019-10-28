@@ -171,9 +171,34 @@ bool Ensemble::Retirer(int element)
 	
 }//Ensemble::Retirer()
 
+unsigned int Ensemble::Retirer(const Ensemble & unEnsemble)
+{
+	unsigned int cpt(0);
+	if(this->EstInclus(unEnsemble) != NON_INCLUSION)
+	{
+		cpt = cardAct;
+		this->cardAct = 0;
+	}
+	else
+	{
+		for(unsigned i(0); i < unEnsemble.cardAct; ++i) //Parcours de unEnsemble
+		{
+			for(unsigned j(0); j < this->cardAct; ++j) //Parcours de this
+			{
+				if(this->elements[j] == unEnsemble.elements[i])
+				{
+					this->elements[j] = this->elements[cardAct-1];
+					--(this->cardAct);
+					++cpt;
+				}
+			}
+		}
+	}
+	//cout << "cpt = " << cpt << endl;
+	return cpt;
+}//Ensemble::Retirer()
 
 /*
-	unsigned int Retirer(const Ensemble & unEnsemble);
 	int Reunir(const Ensemble & unEnsemble);
 	unsigned int Intersection(const Ensemble & unEnsemble);
 */
@@ -249,7 +274,7 @@ Ensemble::Ensemble(int t[], unsigned int nbElements)
 		}
 		cardAct	= i;
 		elements = new int[cardMax];
-		for(int i(0); i < cardAct; ++i)
+		for(unsigned i(0); i < cardAct; ++i)
 		{
 			elements[i] = tmp[i];
 		}
