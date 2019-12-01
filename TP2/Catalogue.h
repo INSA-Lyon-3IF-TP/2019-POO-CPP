@@ -53,7 +53,7 @@ public:
     // Contrat :
     //
 
-    void Rechercher(const char* & villeDep_, const char* & villeArr_);
+    void Rechercher(char* villeDep_,char* villeArr_);
     // Mode d'emploi :
     //
     // Contrat :

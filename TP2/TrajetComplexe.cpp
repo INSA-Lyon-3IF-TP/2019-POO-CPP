@@ -89,7 +89,11 @@ TrajetComplexe::TrajetComplexe (const Trajet* pplisteTrajets[], const unsigned f
 #ifdef MAP
     cout << "Appel au constructeur de <TrajetComplexe>" << endl;
 #endif
-    m_ppTrajet = pplisteTrajets;
+    m_ppTrajet = new Trajet*[fnbElem];
+    for(unsigned i = 0; i<fnbElem ; ++i)
+    {
+        m_ppTrajet[i] = const_cast<Trajet*>(pplisteTrajets[i]);
+    }
     nbElem = fnbElem;
 } //----- Fin de TrajetComplexe
 
@@ -103,8 +107,9 @@ TrajetComplexe::~TrajetComplexe ( )
 #endif
     for(unsigned i = 0; i<nbElem; ++i)
       {
-	delete m_ppTrajet[i];
+        delete m_ppTrajet[i];
       }
+    delete [] m_ppTrajet;
 } //----- Fin de ~TrajetComplexe
 
 
