@@ -51,7 +51,7 @@ public:
     // Contrat :
     //
 
-    Trajet (const char* &uneVilleDep, const char* &uneVilleArr );
+    Trajet (const char *uneVilleDep, const char *uneVilleArr);
     // Mode d'emploi :
     //
     // Contrat :

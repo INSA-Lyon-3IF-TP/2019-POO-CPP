@@ -12,7 +12,6 @@
 
 //-------------------------------------------------------- Include système
 #include <iostream>
-#include <cstring>
 using namespace std;
 
 //------------------------------------------------------ Include personnel
@@ -56,7 +55,7 @@ const char *Trajet::getVilleArr() const
 //#endif
 //} //----- Fin de Xxx (constructeur de copie)
 
-Trajet::Trajet (const char* &uneVilleDep, const char* &uneVilleArr )
+Trajet::Trajet (const char* uneVilleDep, const char* uneVilleArr )
     :villeDep(uneVilleDep),villeArr(uneVilleArr)
     // Algorithme :
     //
