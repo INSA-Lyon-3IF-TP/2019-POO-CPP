@@ -69,7 +69,7 @@ protected:
 
 //----------------------------------------------------- Attributs protégés
   unsigned nbElem = 0; // nombre de Trajets composant le trajet complexe
-  const Trajet** m_ppTrajet;
+  Trajet** m_ppTrajet;
 };
 
 //-------------------------------- Autres définitions dépendantes de <TrajetComplexe>

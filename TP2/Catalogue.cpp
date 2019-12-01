@@ -40,7 +40,7 @@ void Catalogue::Afficher() const
     cout << "Affichage du Catalogue" << endl;
     for(unsigned i(0); i < tailleAct; ++i)
     {
-        (*(mesTrajets)[i]).Afficher();
+      (*(mesTrajets)[i]).Afficher();
     }
     cout << "Fin de l'affichage du Catalogue" << endl;
 } //----- Fin de Afficher
@@ -75,7 +75,7 @@ void Catalogue::Ajouter(Trajet* trajet)
     ++tailleAct;
 } //----- Fin de Ajouter
 
-void Catalogue::Rechercher(const char* & villeDep_, const char* & villeArr_)
+void Catalogue::Rechercher(char* villeDep_, char* villeArr_)
 // Algorithme :
 //
 {
