@@ -13,7 +13,7 @@ int main()
 {
     int commande = 0;
     Catalogue catalogue = Catalogue();
-    cout << "Bienvenue dans ce simulateur de gesyion de transports." << endl << endl;
+    cout << "Bienvenue dans ce simulateur de gestion de transports." << endl << endl;
     while(commande != -1)
     {
         cout << "Menu :" << endl
@@ -26,7 +26,6 @@ int main()
         {
         case 1:
             AjouterTrajet(catalogue);
-            catalogue.Afficher();
             break;
         case 2:
             AfficherTrajet(catalogue);
@@ -98,8 +97,8 @@ void RechercherTrajet(Catalogue & catalogue)
 
 void AjouterTrajetSimple(Catalogue & catalogue)
 {
-    char villeDep[40];
-    char villeArr[40];
+    char *villeDep = new char[40];
+    char *villeArr = new char[40];
     unsigned idMoyenTransport;
     cout << "Veuillez saisir la ville de départ" << endl;
     cin >> villeDep;
@@ -114,7 +113,7 @@ void AjouterTrajetSimple(Catalogue & catalogue)
     TrajetSimple* trajetSimple;
     switch (idMoyenTransport) {
     case 1:
-        trajetSimple = new TrajetSimple("villeDep", "villeArr", MoyenTransport::AUTO);
+        trajetSimple = new TrajetSimple(villeDep, villeArr, MoyenTransport::AUTO);
         break;
     case 2:
         trajetSimple = new TrajetSimple(villeDep, villeArr, MoyenTransport::TRAIN);
@@ -135,23 +134,24 @@ void AjouterTrajetSimple(Catalogue & catalogue)
 void AjouterTrajetComplexe(Catalogue & catalogue)
 {
     unsigned nbSousTrajets(0);
-    while(nbSousTrajets > 0 && nbSousTrajets < 10)
+    while(nbSousTrajets <= 0 || nbSousTrajets >= 10)
     {
         cout << "De combien de sous-trajets se compose votre trajet complexe ? (entre 1 et 9)" << endl;
         cin >> nbSousTrajets;
     }
-    char villeDepGlobal[40];
-    char villeArrGlobal[40];
+    char *villeDepGlobal = new char[40];
+    char *villeArrGlobal = new char[40];
     cout << "Veuillez saisir la ville de départ du trajet complexe" << endl;
     cin >> villeDepGlobal;
     cout << "Veuillez saisir la ville d'arrivée du trajet complexe" << endl;
     cin >> villeArrGlobal;
     const Trajet* liste[9];
-    char villeDep[40];
-    char villeArr[40];
     unsigned idMoyenTransport;
     for(unsigned i(0); i < nbSousTrajets; ++i)
     {
+        cout << endl << "Composition du trajet simple composant le trajet complexe :" << endl;
+        char *villeDep = new char[40];
+        char *villeArr = new char[40];
         cout << "Veuillez saisir la ville de départ" << endl;
         cin >> villeDep;
         cout << "Veuillez saisir la ville d'arrivée" << endl;
@@ -180,7 +180,7 @@ void AjouterTrajetComplexe(Catalogue & catalogue)
             cout << "Erreur" << endl;
             return;
         }
-        liste[0] = trajetSimple;
+        liste[i] = trajetSimple;
     }
     if(TrajetComplexe::listeCorrect(liste, nbSousTrajets, villeDepGlobal, villeArrGlobal))
     {
