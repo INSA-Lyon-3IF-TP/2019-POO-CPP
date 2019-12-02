@@ -85,7 +85,7 @@ void Catalogue::Rechercher(char* villeDep_, char* villeArr_)
     tailleResRecherche = 0;
     for(unsigned i(0); i < tailleAct; ++i)
     {
-        cout << mesTrajets[i]->getVilleDep() << endl << mesTrajets[i]->getVilleArr() << endl;
+        // cout << mesTrajets[i]->getVilleDep() << endl << mesTrajets[i]->getVilleArr() << endl;
         if(strcmp(mesTrajets[i]->getVilleDep(), villeDep_) == 0)
         {
             if(strcmp(mesTrajets[i]->getVilleArr(), villeArr_) == 0)

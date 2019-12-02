@@ -73,7 +73,8 @@ Trajet::~Trajet ( )
 #ifdef MAP
     cout << "Appel au destructeur de <Trajet>" << endl;
 #endif
-
+    delete [] villeDep;
+    delete [] villeArr;
 } //----- Fin de ~Trajet
 
 
