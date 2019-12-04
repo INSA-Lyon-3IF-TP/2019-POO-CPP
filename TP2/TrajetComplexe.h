@@ -31,7 +31,7 @@ class TrajetComplexe : public Trajet
   
 public:
 //----------------------------------------------------- Méthodes publiques
-  static bool listeCorrect(const Trajet* ppListeTrajets[],const unsigned nbElem,const char* vDep,const char*vArr);
+  static bool listeCorrect(Trajet* ppListeTrajets[],const unsigned nbElem,const char* vDep,const char*vArr);
   // Mode d'emploi (constructeur de copie) :
   //    Methode à appeler avant d'appeler le constructeur de TrajetComplexe !
   // Contrat :
@@ -51,7 +51,7 @@ public:
     // Contrat :
     //
 
-  TrajetComplexe (const Trajet* pplisteTrajets[], const unsigned fnbElem,const char* uneVilleDep,const char*uneVilleArr);
+  TrajetComplexe (Trajet* pplisteTrajets[], const unsigned fnbElem,const char* uneVilleDep,const char*uneVilleArr);
     // Mode d'emploi :
     //    Avant il faut appeler la methode listeCorrect et que la méthode est retournée TRUE 
     // Contrat :
