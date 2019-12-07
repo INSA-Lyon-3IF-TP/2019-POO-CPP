@@ -24,7 +24,7 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 
-bool TrajetComplexe::listeCorrect(const Trajet* ppListeTrajets[],const unsigned nbElem,const char* vDep,const char*vArr)
+bool TrajetComplexe::listeCorrect(Trajet* ppListeTrajets[],const unsigned nbElem,const char* vDep,const char*vArr)
 // Algorithme :
 //
 {
@@ -64,10 +64,14 @@ void TrajetComplexe::Afficher() const
 // Algorithme :
 //
 {
+    cout << " --- Trajet Complexe --- " << endl;
+    cout << "Départ : " << villeDep << " et destination :" << villeArr << endl;
+    cout << "Étapes :" << endl;
     for(unsigned i = 0; i<nbElem; ++i)
     {
         m_ppTrajet[i]->Afficher();
     }
+    cout << endl << "--------------------------------" << endl;
 } //------Fin de Méthode
 
 //-------------------------------------------- Constructeurs - destructeur
@@ -81,7 +85,7 @@ void TrajetComplexe::Afficher() const
 //} //----- Fin de Xxx (constructeur de copie)
 
 
-TrajetComplexe::TrajetComplexe (const Trajet* pplisteTrajets[], const unsigned fnbElem,const char* uneVilleDep,const char*uneVilleArr)
+TrajetComplexe::TrajetComplexe (Trajet* pplisteTrajets[], const unsigned fnbElem,const char* uneVilleDep,const char*uneVilleArr)
   :Trajet(uneVilleDep,uneVilleArr)
 // Algorithme :
 //
@@ -89,10 +93,10 @@ TrajetComplexe::TrajetComplexe (const Trajet* pplisteTrajets[], const unsigned f
 #ifdef MAP
     cout << "Appel au constructeur de <TrajetComplexe>" << endl;
 #endif
-    m_ppTrajet = new Trajet*[fnbElem];
+    m_ppTrajet = pplisteTrajets;
     for(unsigned i = 0; i<fnbElem ; ++i)
     {
-        m_ppTrajet[i] = const_cast<Trajet*>(pplisteTrajets[i]);
+        m_ppTrajet[i] = pplisteTrajets[i];
     }
     nbElem = fnbElem;
 } //----- Fin de TrajetComplexe

@@ -134,9 +134,9 @@ void AjouterTrajetSimple(Catalogue & catalogue)
 void AjouterTrajetComplexe(Catalogue & catalogue)
 {
     unsigned nbSousTrajets(0);
-    while(nbSousTrajets <= 0 || nbSousTrajets >= 10)
+    while(nbSousTrajets <= 1 || nbSousTrajets >= 10)
     {
-        cout << "De combien de sous-trajets se compose votre trajet complexe ? (entre 1 et 9)" << endl;
+        cout << "De combien de sous-trajets se compose votre trajet complexe ? (entre 2 et 9)" << endl;
         cin >> nbSousTrajets;
     }
     char *villeDepGlobal = new char[40];
@@ -145,7 +145,7 @@ void AjouterTrajetComplexe(Catalogue & catalogue)
     cin >> villeDepGlobal;
     cout << "Veuillez saisir la ville d'arrivée du trajet complexe" << endl;
     cin >> villeArrGlobal;
-    const Trajet* liste[9];
+    Trajet** liste = new Trajet*[9];
     unsigned idMoyenTransport;
     for(unsigned i(0); i < nbSousTrajets; ++i)
     {
@@ -186,6 +186,9 @@ void AjouterTrajetComplexe(Catalogue & catalogue)
     {
         TrajetComplexe* trajetComplexe = new TrajetComplexe(liste, nbSousTrajets, villeDepGlobal, villeArrGlobal);
         catalogue.Ajouter(trajetComplexe);
+    } else
+    {
+        cout << "Le trajet composé est incorrect, il n'a pas été ajouté au catalogue" << endl;
     }
 }
 
