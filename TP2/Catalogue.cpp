@@ -109,6 +109,7 @@ Catalogue::Catalogue (unsigned tailleMax_)
 #endif
     mesTrajets = new Trajet*[tailleMax];
     resultat = new Trajet*[TAILLE_MAX_RECHERCHE];
+    tailleResRecherche = 0;
 } //----- Fin de Catalogue
 
 
