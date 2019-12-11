@@ -25,12 +25,12 @@ using namespace std;
 //----------------------------------------------------- Méthodes publiques
 
 bool TrajetComplexe::listeCorrect(Trajet* ppListeTrajets[],const unsigned nbElem,const char* vDep,const char*vArr)
-// Algorithme :
-//
+// Algorithme : 1) vérification: vDep est bien la ville de départ du premier trajet de ppListeTrajets
+//              2) chaque ville de départ d'un trajet doit correspondre à la ville d'arrivée du trajet précédent
+//              3) vérification: vArr est bien la ville de départ du dernier trajet de ppListeTrajets
 {
   const char* villeDepart;
   const char* villeArrivee;
-  //if(nbElem<2) return true;
   villeDepart = ppListeTrajets[0]->getVilleDep();
   if(strcmp(villeDepart,vDep) != 0)
   {
@@ -61,11 +61,11 @@ bool TrajetComplexe::listeCorrect(Trajet* ppListeTrajets[],const unsigned nbElem
 } //----- Fin de Méthode
 
 void TrajetComplexe::Afficher() const
-// Algorithme :
+// Algorithme : affiche les trajet complexe en faisant appel à la méthode Afficher de chacun de ses cous-trajets
 //
 {
     cout << " --- Trajet Complexe --- " << endl;
-    cout << "Départ : " << villeDep << " et destination :" << villeArr << endl;
+    cout << "Départ : " << villeDep << " et destination : " << villeArr << endl;
     cout << "Étapes :" << endl;
     for(unsigned i = 0; i<nbElem; ++i)
     {
@@ -75,19 +75,11 @@ void TrajetComplexe::Afficher() const
 } //------Fin de Méthode
 
 //-------------------------------------------- Constructeurs - destructeur
-//Xxx::Xxx ( const Xxx & unXxx )
-// Algorithme :
-//
-//{
-//#ifdef MAP
-//    cout << "Appel au constructeur de copie de <Xxx>" << endl;
-//#endif
-//} //----- Fin de Xxx (constructeur de copie)
 
 
 TrajetComplexe::TrajetComplexe (Trajet* pplisteTrajets[], const unsigned fnbElem,const char* uneVilleDep,const char*uneVilleArr)
   :Trajet(uneVilleDep,uneVilleArr)
-// Algorithme :
+// Algorithme : rempli le tableau de pointeurs m_ppTrajet avec les valeurs du tableau pplisteTrajets
 //
 {
 #ifdef MAP
@@ -103,7 +95,7 @@ TrajetComplexe::TrajetComplexe (Trajet* pplisteTrajets[], const unsigned fnbElem
 
 
 TrajetComplexe::~TrajetComplexe ( )
-// Algorithme :
+// Algorithme : détruit tout les trajets composant le trajet complexe puis le tableau lui-même
 //
 {
 #ifdef MAP

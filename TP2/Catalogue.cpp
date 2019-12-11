@@ -24,15 +24,11 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type Catalogue::Méthode ( liste des paramètres )
-// Algorithme :
-//
-//{
-//} //----- Fin de Méthode
+
 
 void Catalogue::Afficher() const
 // Algorithme :
-//
+//  Appel de la méthode Afficher de chaque trajets du catalogue
 {
 #ifdef MAP
     cout << "Appel à la méthode Afficher de <Catalogue>" << endl;
@@ -47,7 +43,7 @@ void Catalogue::Afficher() const
 
 void Catalogue::AfficherResRecherche() const
 // Algorithme :
-//
+//  Appel de la méthode Afficher de chaque trajets correspondant à la recherche
 {
 #ifdef MAP
     cout << "Appel à la méthode AfficherResRecherche de <Catalogue>" << endl;
@@ -62,7 +58,7 @@ void Catalogue::AfficherResRecherche() const
 
 void Catalogue::Ajouter(Trajet* trajet)
 // Algorithme :
-//
+//  Ajout d'un trajet au tableau avec réajustement u tableau si nécéssaire
 {
 #ifdef MAP
     cout << "Appel à la méthode Ajouter de <Catalogue>" << endl;
@@ -77,7 +73,8 @@ void Catalogue::Ajouter(Trajet* trajet)
 
 void Catalogue::Rechercher(char* villeDep_, char* villeArr_)
 // Algorithme :
-//
+//  Recherche tous les trajets du catalogue ayant pour ville de départ villeDep_ et ville d'arrivée villeArr_
+//  et les ajoute au tableau contenant les trajets correspondant au résultat de la recherche
 {
 #ifdef MAP
     cout << "Appel à Rechercher() de <Catalogue>" << endl;
@@ -99,28 +96,13 @@ void Catalogue::Rechercher(char* villeDep_, char* villeArr_)
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-//Catalogue & Catalogue::operator = ( const Catalogue & unCatalogue )
-// Algorithme :
-//
-//{
-//} //----- Fin de operator =
-
 
 //-------------------------------------------- Constructeurs - destructeur
-//Catalogue::Catalogue ( const Catalogue & unCatalogue )
-// Algorithme :
-//
-//{
-//#ifdef MAP
-//    cout << "Appel au constructeur de copie de <Catalogue>" << endl;
-//#endif
-//} //----- Fin de Catalogue (constructeur de copie)
+
 
 
 Catalogue::Catalogue (unsigned tailleMax_)
     : tailleAct(0), tailleMax(tailleMax_)
-    // Algorithme :
-    //
 {
 #ifdef MAP
     cout << "Appel au constructeur de <Catalogue>" << endl;
@@ -132,7 +114,7 @@ Catalogue::Catalogue (unsigned tailleMax_)
 
 Catalogue::~Catalogue ( )
 // Algorithme :
-//
+//  Détruit les trajets du catalogue puis les tableaux mesTrajets et resultat
 {
 #ifdef MAP
     cout << "Appel au destructeur de <Catalogue>" << endl;
@@ -154,7 +136,8 @@ Catalogue::~Catalogue ( )
 
 void Catalogue::Ajuster()
 // Algorithme :
-//
+//  Création d'un tableau 2 fois plus grand puis copie des différents pointeurs déjà présent dans le tableau de départ
+//  Destruction du tableau de départ, mesTrajets correspond ensuite au nouveau tableau
 {
 #ifdef MAP
     cout << "Appel à la méthode Ajuster de <Catalogue>" << endl;

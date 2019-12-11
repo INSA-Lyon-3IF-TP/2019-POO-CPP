@@ -19,7 +19,7 @@ const unsigned TAILLE_MAX_RECHERCHE = 50;
 
 //------------------------------------------------------------------------
 // Rôle de la classe <Catalogue>
-//
+//  Contient des trajets dans un tableau de pointeurs sur trajets, les résultats d'une recherche sont stockés dans un tableau de pointeurs sur trajets
 //
 //------------------------------------------------------------------------
 
@@ -36,55 +36,32 @@ public:
     //
     
     void Afficher() const;
-    // Mode d'emploi :
-    //
     // Contrat :
-    //
+    // Affiche le catalogue
 
     void AfficherResRecherche() const;
-    // Mode d'emploi :
-    //
     // Contrat :
-    //
+    // Affiche le résultat de la recherche de parcours
 
     void Ajouter(Trajet* trajet);
-    // Mode d'emploi :
-    //
     // Contrat :
-    //
+    // Ajoute trajet au catalogue
 
     void Rechercher(char* villeDep_,char* villeArr_);
-    // Mode d'emploi :
-    //
     // Contrat :
-    //
+    // Recherche les différents trajets permettant d'aller de villeDep_ à villeArr_
 
     //------------------------------------------------- Surcharge d'opérateurs
-    //Catalogue & operator = ( const Catalogue & unCatalogue );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
 
     //-------------------------------------------- Constructeurs - destructeur
-    //Catalogue ( const Catalogue & unCatalogue );
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
 
     Catalogue (unsigned tailleMax_ = TAILLE_MAX);
-    // Mode d'emploi :
-    //
     // Contrat :
-    //
+    // Affecte à tailleMax la valeur tailleMax_
 
     virtual ~Catalogue ( );
-    // Mode d'emploi :
-    //
     // Contrat :
-    //
+    // Détruit le catalogue
 
     //------------------------------------------------------------------ PRIVE
 
@@ -97,16 +74,16 @@ private:
     //----------------------------------------------------- Méthodes privées
     void Ajuster();
     // Mode d'emploi :
-    //
+    // L'utilisateur n'a pas à s'en servir, la méthode est utilisée lors de l'ajout d'un trajet
     // Contrat :
     // Double la taille max du tableau (réallocation).
 
     //----------------------------------------------------- Attributs privés
-    unsigned tailleAct;
-    unsigned tailleMax;
-    unsigned tailleResRecherche;
-    Trajet** mesTrajets;
-    Trajet** resultat;
+    unsigned tailleAct; // taille actuelle du tableau de trajets
+    unsigned tailleMax; // taille maximale du tableau de trajets
+    unsigned tailleResRecherche; // taille actuelle du tableau de trajets correspondant au résultat de la recherche
+    Trajet** mesTrajets; // tableau de pointeurs pointant sur les trajets composant le catalogue
+    Trajet** resultat; // tableau de pointeurs pointant sur les trajets correspondant au résultat de la recherche
 };
 
 //-------------------------------- Autres définitions dépendantes de <Catalogue>

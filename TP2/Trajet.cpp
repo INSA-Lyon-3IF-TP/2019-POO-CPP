@@ -22,43 +22,24 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type Trajet::Méthode ( liste des paramètres )
-// Algorithme :
-//
-//{
-//} //----- Fin de Méthode
+
 
 const char *Trajet::getVilleDep() const
 {
-#ifdef MAP
-    cout << "Appel à getVilleDep() de <Trajet>" << endl;
-#endif
     return villeDep;
-}
+}//----- Fin de getVilleDep
 
 const char *Trajet::getVilleArr() const
 {
-#ifdef MAP
-    cout << "Appel à getVilleArr() de <Trajet>" << endl;
-#endif
     return villeArr;
-}
+}//----- Fin de getVilleDep
 
 
 //-------------------------------------------- Constructeurs - destructeur
-//Xxx::Xxx ( const Xxx & unXxx )
-// Algorithme :
-//
-//{
-//#ifdef MAP
-//    cout << "Appel au constructeur de copie de <Xxx>" << endl;
-//#endif
-//} //----- Fin de Xxx (constructeur de copie)
+
 
 Trajet::Trajet (const char* uneVilleDep, const char* uneVilleArr )
     :villeDep(uneVilleDep),villeArr(uneVilleArr)
-    // Algorithme :
-    //
 {
 #ifdef MAP
     cout << "Appel au constructeur de <Trajet>" << endl;
@@ -67,7 +48,7 @@ Trajet::Trajet (const char* uneVilleDep, const char* uneVilleArr )
 
 
 Trajet::~Trajet ( )
-// Algorithme :
+// Algorithme : détruit la ville de départ et la ville d'arrivée
 //
 {
 #ifdef MAP
