@@ -61,6 +61,7 @@ void RechercherTrajet(Catalogue & catalogue)
     cout << endl;
 }
 
+
 // Algorithme :
 // Ajoute un trajet simple dans le catalogue après avoir demandé un moyen de transport
 void AjouterTrajetSimple(Catalogue & catalogue,char * &villeDep,char * &villeArr)
