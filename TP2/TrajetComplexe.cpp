@@ -61,7 +61,7 @@ bool TrajetComplexe::listeCorrect(Trajet* ppListeTrajets[],const unsigned nbElem
 } //----- Fin de Méthode
 
 void TrajetComplexe::Afficher() const
-// Algorithme : affiche les trajet complexe en faisant appel à la méthode Afficher de chacun de ses cous-trajets
+// Algorithme : affiche les trajet complexe en faisant appel à la méthode Afficher de chacun de ses sous-trajets
 //
 {
     cout << " --- Trajet Complexe --- " << endl;
