@@ -95,15 +95,9 @@ void RechercherTrajet(Catalogue & catalogue)
     cout << endl;
 }
 
-void AjouterTrajetSimple(Catalogue & catalogue)
+void AjouterTrajetSimple(Catalogue & catalogue,char * &villeDep,char * &villeArr)
 {
-    char *villeDep = new char[40];
-    char *villeArr = new char[40];
     unsigned idMoyenTransport;
-    cout << "Veuillez saisir la ville de départ" << endl;
-    cin >> villeDep;
-    cout << "Veuillez saisir la ville d'arrivée" << endl;
-    cin >> villeArr;
     cout << "Veuillez choisir le moyen de transport" << endl;
     cout << "(1) AUTO" << endl
          << "(2) TRAIN" << endl
@@ -131,7 +125,7 @@ void AjouterTrajetSimple(Catalogue & catalogue)
     catalogue.Ajouter(trajetSimple);
 }
 
-void AjouterTrajetComplexe(Catalogue & catalogue)
+void AjouterTrajetComplexe(Catalogue & catalogue,char * &villeDep,char * &villeArr)
 {
     unsigned nbSousTrajets(0);
     while(nbSousTrajets <= 1 || nbSousTrajets >= 10)
@@ -139,12 +133,8 @@ void AjouterTrajetComplexe(Catalogue & catalogue)
         cout << "De combien de sous-trajets se compose votre trajet complexe ? (entre 2 et 9)" << endl;
         cin >> nbSousTrajets;
     }
-    char *villeDepGlobal = new char[40];
-    char *villeArrGlobal = new char[40];
-    cout << "Veuillez saisir la ville de départ du trajet complexe" << endl;
-    cin >> villeDepGlobal;
-    cout << "Veuillez saisir la ville d'arrivée du trajet complexe" << endl;
-    cin >> villeArrGlobal;
+    char *villeDepGlobal = villeDep;
+    char *villeArrGlobal = villeArr;
     Trajet** liste = new Trajet*[9];
     unsigned idMoyenTransport;
     for(unsigned i(0); i < nbSousTrajets; ++i)
@@ -188,6 +178,13 @@ void AjouterTrajetComplexe(Catalogue & catalogue)
         catalogue.Ajouter(trajetComplexe);
     } else
     {
+        for(unsigned i = 0; i<nbSousTrajets; ++i)
+          {
+            delete liste[i];
+          }
+        delete [] liste;
+        delete [] villeDep;
+        delete [] villeArr;
         cout << "Le trajet composé est incorrect, il n'a pas été ajouté au catalogue" << endl;
     }
 }
@@ -198,12 +195,20 @@ void AjouterTrajet(Catalogue & catalogue)
          << "(2) Trajet Complexe" << endl;
     int commande(0);
     cin >> commande;
+
+    char *villeDep = new char[40];
+    char *villeArr = new char[40];
+    cout << "Veuillez saisir la ville de départ"<< endl;
+    cin >> villeDep;
+    cout << "Veuillez saisir la ville d'arrivée" << endl;
+    cin >> villeArr;
+
     switch (commande) {
     case 1:
-        AjouterTrajetSimple(catalogue);
+        AjouterTrajetSimple(catalogue,villeDep,villeArr);
         break;
     case 2:
-        AjouterTrajetComplexe(catalogue);
+        AjouterTrajetComplexe(catalogue,villeDep,villeArr);
         break;
     default:
         cout << "Erreur" << endl;

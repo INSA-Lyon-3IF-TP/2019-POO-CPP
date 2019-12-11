@@ -18,7 +18,7 @@
 
 //------------------------------------------------------------------------
 // Rôle de la classe <Trajet>
-//
+//  Classe mère de TrajetSimple et TrajetComplexe, utilisée pour le polymorphisme
 //
 //------------------------------------------------------------------------
 
@@ -52,16 +52,12 @@ public:
     //
 
     Trajet (const char *uneVilleDep, const char *uneVilleArr);
-    // Mode d'emploi :
-    //
     // Contrat :
     //    Affecte à villeDep la valeur uneVilleDep et à villeArr la valeur uneVilleArr
 
     virtual ~Trajet ( );
-    // Mode d'emploi :
-    //
     // Contrat :
-    //    Détruit l'objet Trajet, doit être redéfnie par les classes filles
+    //    Détruit l'objet Trajet , doit être redéfnie par les classes filles
 
     //------------------------------------------------------------------ PRIVE
 
